@@ -109,7 +109,7 @@ type SelectedInsert = { id: string; source: InsertSource };
 const AUTOSAVE_DEBOUNCE_MS = 800;
 
 const EXCALIDRAW_REPO_URL = "https://github.com/excalidraw/excalidraw";
-const DRAW_REPO_URL = "https://github.com/marcop135/draw";
+const WHITEBOARD_REPO_URL = "https://github.com/marcop135/whiteboard";
 const FOR_AGENTS_HREF = "/for-agents.html";
 const PRIVACY_HREF = "/privacy";
 
@@ -560,7 +560,7 @@ export default function App() {
                   Excalidraw
                 </a>{" "}
                 by{" "}
-                <a href={DRAW_REPO_URL} target="_blank" rel="noopener noreferrer">
+                <a href={WHITEBOARD_REPO_URL} target="_blank" rel="noopener noreferrer">
                   marcop135
                 </a>
               </span>
