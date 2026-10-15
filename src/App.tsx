@@ -42,6 +42,7 @@ import {
   Journals,
   QuestionCircle,
   Robot,
+  ShieldCheck,
 } from "./components/icons";
 import { SITE_SHORT_NAME } from "./siteMeta";
 import {
@@ -110,6 +111,7 @@ const AUTOSAVE_DEBOUNCE_MS = 800;
 const EXCALIDRAW_REPO_URL = "https://github.com/excalidraw/excalidraw";
 const DRAW_REPO_URL = "https://github.com/marcop135/draw";
 const FOR_AGENTS_HREF = "/for-agents.html";
+const PRIVACY_HREF = "/privacy";
 
 
 /** Scene-level change detector: element versions, background and file set. */
@@ -542,6 +544,13 @@ export default function App() {
               className="app-menu-small"
             >
               For agents
+            </MainMenu.ItemLink>
+            <MainMenu.ItemLink
+              href={PRIVACY_HREF}
+              icon={<ShieldCheck />}
+              className="app-menu-small"
+            >
+              Privacy
             </MainMenu.ItemLink>
             <MainMenu.ItemCustom className="app-menu-credit">
               <Diagram3 aria-hidden="true" />

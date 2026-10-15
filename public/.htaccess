@@ -1,8 +1,10 @@
 # Security headers: applied to every response Apache serves from this dir,
 # error pages included (`always`). 'wasm-unsafe-eval' lets Excalidraw's font
-# subsetting WebAssembly run without allowing JS eval.
+# subsetting WebAssembly run without allowing JS eval. mt.marcopontili.com is
+# the self-hosted, cookieless Matomo (public/matomo.js, /privacy): its tracker
+# script, POST hits and image fallback are the only third-party requests.
 <IfModule mod_headers.c>
-  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; manifest-src 'self'; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data: blob: https://mt.marcopontili.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'wasm-unsafe-eval' https://mt.marcopontili.com; worker-src 'self'; manifest-src 'self'; font-src 'self' data:; connect-src 'self' https://mt.marcopontili.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests"
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
@@ -40,12 +42,19 @@
   </IfModule>
 </FilesMatch>
 
+# Extensionless privacy page, and a real 404 page with a 404 status.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^privacy/?$ privacy.html [L]
+</IfModule>
+ErrorDocument 404 /404.html
+
 # Apache doesn't know about the .webmanifest extension by default.
 AddType application/manifest+json .webmanifest
 
 # Compress text assets if the host enables mod_deflate.
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/markdown application/javascript application/json application/manifest+json image/svg+xml
 </IfModule>
 
 # Disable directory listings.

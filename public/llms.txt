@@ -1,8 +1,10 @@
-# draw (draw.marcopontili.com)
+# whiteboard (whiteboard.marcopontili.com)
 
 > Browser whiteboard built on Excalidraw, with LaTeX math, Mermaid-to-shapes and sanitized Markdown inserts. Runs in the browser, works offline, and stores boards only in the browser (IndexedDB).
 
-Live app: https://draw.marcopontili.com/
+Live app: https://whiteboard.marcopontili.com/
+Source: https://github.com/marcop135/draw (MIT)
+Author: Marco Pontili (https://marcopontili.com/)
 
 ## When to use
 
@@ -22,25 +24,26 @@ Use this app when an agent or person needs to sketch a diagram, place rendered L
 
 ## How agents control the app
 
-1. Open https://draw.marcopontili.com/ (or a local Vite server on port 5173).
+1. Open https://whiteboard.marcopontili.com/ (or a local Vite server on port 5173).
 2. Wait until `window.draw` is defined.
 3. Call `await window.draw.setScene(json)` with `.excalidraw` JSON (`type: "excalidraw"`, `elements` array, max 20 MB).
 4. Read the scene back with `window.draw.getScene()` (`.excalidraw` JSON string).
 5. Export with `await window.draw.exportImage("png")` (data URL) or `await window.draw.exportImage("svg")` (SVG markup).
 
-Skill: https://draw.marcopontili.com/.well-known/agent-skills/draw-scene/SKILL.md (Playwriter procedure).
+Skill: https://whiteboard.marcopontili.com/.well-known/agent-skills/draw-scene/SKILL.md (Playwriter procedure).
 
 ## Machine-readable surfaces
 
-- [For agents](https://draw.marcopontili.com/for-agents.html): portal inventory
-- [auth.md](https://draw.marcopontili.com/auth.md): authentication (none)
-- [openapi.json](https://draw.marcopontili.com/openapi.json): public surface description
-- [API catalog](https://draw.marcopontili.com/.well-known/api-catalog): RFC 9727 linkset
-- [ARD catalog](https://draw.marcopontili.com/.well-known/ard.json)
-- [Agent skills index](https://draw.marcopontili.com/.well-known/agent-skills/index.json)
+- [For agents](https://whiteboard.marcopontili.com/for-agents.html): portal inventory
+- [auth.md](https://whiteboard.marcopontili.com/auth.md): authentication (none)
+- [openapi.json](https://whiteboard.marcopontili.com/openapi.json): public surface description
+- [API catalog](https://whiteboard.marcopontili.com/.well-known/api-catalog): RFC 9727 linkset
+- [ARD catalog](https://whiteboard.marcopontili.com/.well-known/ard.json)
+- [Agent skills index](https://whiteboard.marcopontili.com/.well-known/agent-skills/index.json)
+- [Privacy](https://whiteboard.marcopontili.com/privacy): cookieless self-hosted Matomo, boards stay in the browser
 
 ## Notes
 
 - No accounts, API keys, OAuth, or hosted MCP.
-- Scenes stay in the browser session; nothing is uploaded.
+- Scenes stay in the browser; board contents are never uploaded. Page views are counted with cookieless Matomo.
 - Crawlers remain disallowed in `robots.txt` by design; this file is for agents that already have the URL.

@@ -3,7 +3,7 @@
  * verify:agent-readiness: static checks for the agent discovery surface.
  * Usage: node scripts/verify-agent-readiness.mjs [baseUrl]
  * Without baseUrl it checks dist/ (run npm run build first) plus the bridge source;
- * with one (e.g. http://localhost:4173 or https://draw.marcopontili.com) it fetches each file.
+ * with one (e.g. http://localhost:4173 or https://whiteboard.marcopontili.com) it fetches each file.
  */
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";

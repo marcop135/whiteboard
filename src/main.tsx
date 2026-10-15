@@ -21,6 +21,13 @@ import "./styles.css";
 // base, we'd switch to a prompt-the-user-to-reload pattern.
 registerSW({ immediate: true });
 
+// Cookieless Matomo (public/matomo.js, see /privacy). A first-party file keeps
+// the CSP free of 'unsafe-inline'; async so it never delays the canvas.
+const matomo = document.createElement("script");
+matomo.src = "/matomo.js";
+matomo.async = true;
+document.head.append(matomo);
+
 // A new deploy renames hashed chunks; an open tab (or stale SW cache) can hold
 // references to chunk URLs the server no longer has, so a lazy import() 404s.
 // Vite fires `vite:preloadError` in that case — reload once to pull the fresh

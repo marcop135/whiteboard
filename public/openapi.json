@@ -1,17 +1,17 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "draw",
+    "title": "whiteboard",
     "version": "1.11.3",
     "summary": "Client-only whiteboard in the browser",
-    "description": "There is no remote drawing or export HTTP API. Agents load https://draw.marcopontili.com/ and drive window.draw via Playwriter (or equivalent browser automation). See /llms.txt and /for-agents.html.",
+    "description": "There is no remote drawing or export HTTP API. Agents load https://whiteboard.marcopontili.com/ and drive window.draw via Playwriter (or equivalent browser automation). See /llms.txt and /for-agents.html.",
     "license": {
       "name": "MIT"
     }
   },
   "servers": [
     {
-      "url": "https://draw.marcopontili.com",
+      "url": "https://whiteboard.marcopontili.com",
       "description": "Production PWA (static files)"
     }
   ],

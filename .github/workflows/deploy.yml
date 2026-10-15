@@ -27,12 +27,21 @@ jobs:
     # Only main ships to production, whichever branch the run was started from.
     if: github.ref == 'refs/heads/main'
     steps:
+      # WHITEBOARD_FTP_* is the FTP account chrooted to the whiteboard
+      # docroot. The old FTP_*_PRODUCTION account writes into the retired draw
+      # docroot (retire-draw.yml only), so never fall back to it here.
       - name: Check deploy secrets
         env:
           FTPS_HOST: ${{ secrets.FTPS_HOST }}
+          WHITEBOARD_FTP_USERNAME: ${{ secrets.WHITEBOARD_FTP_USERNAME }}
+          WHITEBOARD_FTP_PASSWORD: ${{ secrets.WHITEBOARD_FTP_PASSWORD }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
         run: |
+          if [ -z "$WHITEBOARD_FTP_USERNAME" ] || [ -z "$WHITEBOARD_FTP_PASSWORD" ]; then
+            echo "::error::WHITEBOARD_FTP_USERNAME and WHITEBOARD_FTP_PASSWORD must both be set (whiteboard.marcopontili.com FTP account). Refusing to deploy rather than write into the old draw docroot."
+            exit 1
+          fi
           missing=""
           [ -n "$FTPS_HOST" ] || missing="$missing FTPS_HOST"
           [ -n "$CLOUDFLARE_API_TOKEN" ] || missing="$missing CLOUDFLARE_API_TOKEN"
@@ -77,8 +86,8 @@ jobs:
         env:
           DEPLOY_HOST: ${{ secrets.FTP_HOST }}
           FTPS_HOST: ${{ secrets.FTPS_HOST }}
-          DEPLOY_USER: ${{ secrets.FTP_USERNAME_PRODUCTION }}
-          DEPLOY_PASS: ${{ secrets.FTP_PASSWORD_PRODUCTION }}
+          DEPLOY_USER: ${{ secrets.WHITEBOARD_FTP_USERNAME }}
+          DEPLOY_PASS: ${{ secrets.WHITEBOARD_FTP_PASSWORD }}
           SFTP_PORT: ${{ secrets.SFTP_PORT }}
           SFTP_KNOWN_HOSTS: ${{ secrets.SFTP_KNOWN_HOSTS }}
           PRUNE: ${{ inputs.prune }}
@@ -135,6 +144,6 @@ jobs:
             "https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache" \
             -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
             -H "Content-Type: application/json" \
-            --data '{"hosts":["draw.marcopontili.com"]}')"
+            --data '{"hosts":["whiteboard.marcopontili.com"]}')"
           echo "$resp" | jq .
           echo "$resp" | jq -e '.success == true' >/dev/null
