@@ -1,10 +1,10 @@
 # Agent surface
 
-Maintainer notes for opening draw to coding agents (v1.7.0+). Pattern ported from md2pdf.
+Maintainer notes for opening whiteboard to coding agents (v1.7.0+). Pattern ported from md2pdf.
 
 ## Control contract
 
-After the app mounts, the page exposes `window.draw`:
+After the app mounts, the page exposes `window.draw` (the name predates the move to whiteboard and stays as the API):
 
 | Method | Behavior |
 | --- | --- |
@@ -24,7 +24,8 @@ Implementation: [`src/lib/agentBridge.ts`](../src/lib/agentBridge.ts), registere
 | `/openapi.json` | OpenAPI for static surfaces only |
 | `/.well-known/api-catalog` | RFC 9727 linkset |
 | `/.well-known/ard.json` | ARD catalog (twin: `ai-catalog.json`; entries carry both `type` and `mediaType`) |
-| `/.well-known/agent-skills/index.json` | Skills index -> `draw-scene/SKILL.md` (self-hosted; the repo is private) |
+| `/.well-known/agent-skills/index.json` | Skills index -> `draw-scene/SKILL.md` (self-hosted) |
+| `/.well-known/security.txt` | Security contact (RFC 9116) |
 
 ## Constraints
 

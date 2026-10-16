@@ -1,11 +1,11 @@
 ---
 name: draw-scene
-description: Drive draw (draw.marcopontili.com or local :5173) with Playwriter. Load .excalidraw JSON via window.draw, read the scene back, export PNG or SVG. Use when building or exporting an Excalidraw scene through the live app.
+description: Drive whiteboard (whiteboard.marcopontili.com or local :5173) with Playwriter. Load .excalidraw JSON via window.draw, read the scene back, export PNG or SVG. Use when building or exporting an Excalidraw scene through the live app.
 ---
 
 # draw-scene
 
-Browser-only whiteboard at https://draw.marcopontili.com (or `http://127.0.0.1:5173` in development).
+Browser-only whiteboard at https://whiteboard.marcopontili.com (or `http://127.0.0.1:5173` in development).
 
 Read `/llms.txt` and `/for-agents.html` on the target origin for the live contract.
 
@@ -19,7 +19,7 @@ Read `/llms.txt` and `/for-agents.html` on the target origin for the live contra
 1. Open the app and wait for the bridge:
 
 ```bash
-playwriter -s 1 -e "await page.goto('https://draw.marcopontili.com/'); await page.waitForFunction(() => window.draw && typeof window.draw.setScene === 'function');"
+playwriter -s 1 -e "await page.goto('https://whiteboard.marcopontili.com/'); await page.waitForFunction(() => window.draw && typeof window.draw.setScene === 'function');"
 ```
 
 2. Load a scene (`.excalidraw` JSON string: `type: "excalidraw"`, `elements` array, max 20 MB). This replaces the current canvas:

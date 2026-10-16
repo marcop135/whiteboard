@@ -1,11 +1,11 @@
-![draw: an Excalidraw whiteboard with LaTeX, Markdown and PDF export](.github/brand/readme-light.png#gh-light-mode-only)
-![draw: an Excalidraw whiteboard with LaTeX, Markdown and PDF export](.github/brand/readme-dark.png#gh-dark-mode-only)
+![whiteboard: an Excalidraw whiteboard with LaTeX, Markdown and PDF export](.github/brand/readme-light.png#gh-light-mode-only)
+![whiteboard: an Excalidraw whiteboard with LaTeX, Markdown and PDF export](.github/brand/readme-dark.png#gh-dark-mode-only)
 
-# draw
+# whiteboard
 
 Built on [Excalidraw](https://github.com/excalidraw/excalidraw). A whiteboard for sketches, formulas, notes, and quick flowcharts. Draw, drop in LaTeX or Markdown, export when done. No account, no upload, works offline.
 
-**Live app: [draw.marcopontili.com](https://draw.marcopontili.com)**
+**Live app: [whiteboard.marcopontili.com](https://whiteboard.marcopontili.com/)**
 
 <p align="center">
   <picture>
@@ -41,7 +41,7 @@ Excalidraw, with these extras on top.
 
 ## Privacy
 
-Boards stay in the browser's IndexedDB; nothing is uploaded.
+Boards stay in the browser's IndexedDB; nothing is uploaded. Page views are counted with self-hosted, cookieless Matomo that honours Do Not Track; no cookies, no banner. Details: [whiteboard.marcopontili.com/privacy](https://whiteboard.marcopontili.com/privacy).
 
 ## Security
 

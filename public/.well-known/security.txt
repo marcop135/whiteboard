@@ -1,0 +1,6 @@
+Contact: https://github.com/marcop135/draw/security/advisories/new
+Contact: mailto:marco.pontili@gmail.com
+Expires: 2027-10-15T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://whiteboard.marcopontili.com/.well-known/security.txt
+Policy: https://github.com/marcop135/draw/blob/main/SECURITY.md

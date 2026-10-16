@@ -15,7 +15,7 @@ body:
     attributes:
       label: Steps to reproduce
       placeholder: |
-        1. Open https://draw.marcopontili.com
+        1. Open https://whiteboard.marcopontili.com
         2. Insert LaTeX / Mermaid / Markdown
         3. …
     validations:
