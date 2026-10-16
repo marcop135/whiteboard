@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { installLocalFontFace, stripCdnFontSources } from "./localFontFace";
 
 const LOCAL =
-  "url(https://draw.marcopontili.com/fonts/Excalifont/Excalifont-Regular-a1.woff2) format('woff2')";
+  "url(https://whiteboard.marcopontili.com/fonts/Excalifont/Excalifont-Regular-a1.woff2) format('woff2')";
 const CDN =
   "url(https://esm.sh/@excalidraw/excalidraw@0.18.1/dist/prod/fonts/Excalifont/Excalifont-Regular-a1.woff2) format('woff2')";
 

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, follow" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121212" />
+    <title>Privacy · whiteboard</title>
+    <meta
+      name="description"
+      content="How whiteboard.marcopontili.com handles personal data: cookieless self-hosted Matomo, boards kept in your browser, hosting logs."
+    />
+    <link rel="canonical" href="https://whiteboard.marcopontili.com/privacy" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="whiteboard" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://whiteboard.marcopontili.com/privacy" />
+    <meta property="og:title" content="Privacy · whiteboard" />
+    <meta
+      property="og:description"
+      content="How whiteboard.marcopontili.com handles personal data: cookieless self-hosted Matomo, boards kept in your browser, hosting logs."
+    />
+    <meta property="og:image" content="https://whiteboard.marcopontili.com/og.png?v=4" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="whiteboard: an Excalidraw whiteboard with LaTeX, Markdown and PDF export" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/pages.css" />
+    <script src="/matomo.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header>
+      <a class="brand" href="/"><img src="/favicon.svg" alt="" width="28" height="28" />whiteboard</a>
+    </header>
+    <main id="main">
+      <h1>Privacy</h1>
+      <p class="lead">Last updated: <time datetime="2026-10-15">2026-10-15</time></p>
+
+      <p>
+        This notice covers <code>whiteboard.marcopontili.com</code>, a free browser whiteboard built on Excalidraw. It
+        has no accounts, no login and no backend.
+      </p>
+
+      <h2>Controller</h2>
+      <p>
+        <a href="https://marcopontili.com">Marco Pontili</a>.<br />
+        Contact: <a href="https://marcopontili.com/contact">marcopontili.com/contact</a>
+      </p>
+
+      <h2>Your boards stay on your device</h2>
+      <p>
+        Boards, inserted LaTeX and Markdown, and the theme choice are stored in your browser (IndexedDB and
+        localStorage) so the app works offline. They are never uploaded. This storage is strictly necessary for the
+        feature you use and is not read by anyone else. Clearing site data in your browser deletes it.
+      </p>
+
+      <h2>Analytics: self-hosted, cookieless Matomo</h2>
+      <ul>
+        <li>
+          <strong>What:</strong> page views and outbound link clicks, with an anonymised IP address, browser and device
+          type, referrer and time of visit.
+        </li>
+        <li>
+          <strong>How:</strong> Matomo runs on the controller's own server. It sets
+          no cookies, builds no cross-site profiles and honours the browser's Do Not Track signal: with DNT on, no
+          visit is recorded. Board contents are never sent.
+        </li>
+        <li>
+          <strong>Why and legal basis:</strong> aggregate traffic measurement to keep the app useful, under Art. 6(1)(f)
+          GDPR (legitimate interest). You can object at any time by turning on Do Not Track or through the contact page.
+        </li>
+        <li><strong>Where:</strong> European Union (Netsons, Italy). Data is not shared with third parties.</li>
+      </ul>
+
+      <h2>Hosting</h2>
+      <p>
+        The site is hosted by Netsons S.r.l. (Italy) as processor. Requests pass through Cloudflare, Inc. as a proxy
+        and cache. Both process connection data such as IP address, user agent, requested URL and time, to deliver the
+        site and keep it secure, under Art. 6(1)(f) GDPR. Cloudflare may process this data outside the EU; it is
+        certified under the EU-US Data Privacy Framework. No Cloudflare analytics run on this site.
+      </p>
+
+      <h2>Retention</h2>
+      <p>
+        Analytics data is kept only as long as needed for traffic statistics. Server logs follow the hosting
+        provider's standard rotation. Data in your browser stays until you delete it.
+      </p>
+
+      <h2>Cookies</h2>
+      <p>This site sets no cookies, so there is no cookie banner.</p>
+
+      <h2>Your rights</h2>
+      <p>
+        You have the right to access, rectify, erase, restrict and port your data, and to object to processing based
+        on legitimate interest. Use the contact page above. You may lodge a complaint with the data protection authority where you live or work. The same rights and the same contact route apply wherever you are in the world.
+      </p>
+    </main>
+    <footer>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="/">Open the whiteboard</a></li>
+          <li><a href="/privacy" aria-current="page">Privacy</a></li>
+          <li><a href="/for-agents.html">For agents</a></li>
+          <li><a href="https://github.com/marcop135/draw">Source on GitHub</a></li>
+        </ul>
+      </nav>
+    </footer>
+  </body>
+</html>

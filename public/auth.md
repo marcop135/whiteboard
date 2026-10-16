@@ -1,6 +1,6 @@
 # Authentication
 
-draw does **not** require authentication.
+whiteboard does **not** require authentication.
 
 - No user accounts
 - No API keys

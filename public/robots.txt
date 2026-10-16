@@ -17,6 +17,8 @@ Allow: /.well-known/api-catalog
 Allow: /.well-known/ard.json
 Allow: /.well-known/ai-catalog.json
 Allow: /.well-known/agent-skills/
+Allow: /.well-known/security.txt
+Allow: /privacy
 Content-Signal: ai-train=no, search=no, ai-input=yes
 
 # Social link-preview / unfurl bots
