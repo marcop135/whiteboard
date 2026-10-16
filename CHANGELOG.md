@@ -7,6 +7,8 @@
 
 ## [Unreleased]
 
+## [1.12.1] - 2026-10-16
+
 ### Fixed
 
 - Send page views to whiteboard's own Matomo site instead of the shared marcopontili.com one.
