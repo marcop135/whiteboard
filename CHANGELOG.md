@@ -7,6 +7,8 @@
 
 ## [Unreleased]
 
+## [1.12.0] - 2026-10-16
+
 ### Added
 
 - Add a `/privacy` page, a 404 page and `/.well-known/security.txt`, linked from the menu and page footers.
