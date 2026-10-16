@@ -73,10 +73,32 @@ function excalidrawAssetsPlugin(): Plugin {
   };
 }
 
+// Apache rewrites the extensionless /privacy to public/privacy.html
+// (public/.htaccess); mirror that in dev and preview so the link works locally.
+function staticPagesPlugin(): Plugin {
+  const rewrite = (req: { url?: string }, _res: unknown, next: () => void) => {
+    const [path, query] = (req.url ?? "").split("?");
+    if (path === "/privacy" || path === "/privacy/") {
+      req.url = `/privacy.html${query ? `?${query}` : ""}`;
+    }
+    next();
+  };
+  return {
+    name: "static-pages",
+    configureServer(server) {
+      server.middlewares.use(rewrite);
+    },
+    configurePreviewServer(server) {
+      server.middlewares.use(rewrite);
+    },
+  };
+}
+
 export default defineConfig({
   plugins: [
     react(),
     excalidrawAssetsPlugin(),
+    staticPagesPlugin(),
     VitePWA({
       registerType: "autoUpdate",
       // Don't try to precache the giant Mermaid + Excalidraw bundle; they're
@@ -90,6 +112,8 @@ export default defineConfig({
         // answer them with the cached app shell.
         navigateFallbackDenylist: [
           /^\/for-agents\.html$/,
+          /^\/privacy(?:\.html|\/)?$/,
+          /^\/404\.html$/,
           /^\/(?:llms\.txt|auth\.md|openapi\.json)$/,
           /^\/\.well-known\//,
         ],
@@ -137,7 +161,7 @@ export default defineConfig({
         name: SITE_DOCUMENT_TITLE,
         short_name: SITE_SHORT_NAME,
         description:
-          "A free, offline-capable whiteboard. Sketch, math (LaTeX), Mermaid diagrams, Markdown notes. No login, no tracking.",
+          "A free, offline-capable whiteboard. Sketch, math (LaTeX), Mermaid diagrams, Markdown notes. No login, no cookies.",
         // Matches the dark canvas and index.html's dark theme-color; the
         // manifest takes one value, so the light scheme relies on the meta.
         theme_color: "#121212",

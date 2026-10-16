@@ -7,6 +7,25 @@
 
 ## [Unreleased]
 
+## [1.12.0] - 2026-10-16
+
+### Added
+
+- Add a `/privacy` page, a 404 page and `/.well-known/security.txt`, linked from the menu and page footers.
+- Count page views with self-hosted, cookieless Matomo (Do Not Track honoured), no banner.
+- Add `retire-draw.yml`: uploads self-unregistering service workers to the old draw host before its redirect.
+
+### Changed
+
+- Move the canonical host to [whiteboard.marcopontili.com](https://whiteboard.marcopontili.com/) and rename to whiteboard.
+- Rename the PWA `short_name`, titles, agent files and brand images to whiteboard; `window.draw` stays.
+- Add canonical, Twitter card tags and `WebApplication` JSON-LD to the app head; the page stays `noindex`.
+- Deploy with the `WHITEBOARD_FTP_*` secrets and fail fast when they are missing; purge the new host.
+
+### Security
+
+- Allow only `self-hosted Matomo` in the CSP `script-src`, `connect-src` and `img-src` for Matomo.
+
 ## [1.11.3] - 2026-10-10
 
 ### Changed

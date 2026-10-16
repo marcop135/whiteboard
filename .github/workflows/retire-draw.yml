@@ -1,0 +1,86 @@
+name: Retire draw service worker (manual)
+
+# One-off for the move to whiteboard.marcopontili.com. Run it once, before the
+# Cloudflare redirect on the old draw host goes live: installed PWAs answer from
+# their service worker cache and never see that redirect. This uploads only the
+# self-retiring retire/sw.js and retire/share-target-sw.js over the old ones in
+# the draw docroot; nothing else there is touched. Each worker deletes the
+# caches, unregisters itself and sends open windows to the new host.
+#
+# Uses the old draw FTP account (FTP_*_PRODUCTION, chrooted to the draw
+# docroot). deploy.yml uses WHITEBOARD_FTP_* and never writes here.
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: retire-draw
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  retire:
+    name: Upload self-retiring service workers
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Check secrets
+        env:
+          FTPS_HOST: ${{ secrets.FTPS_HOST }}
+          DEPLOY_USER: ${{ secrets.FTP_USERNAME_PRODUCTION }}
+          DEPLOY_PASS: ${{ secrets.FTP_PASSWORD_PRODUCTION }}
+        run: |
+          missing=""
+          [ -n "$FTPS_HOST" ] || missing="$missing FTPS_HOST"
+          [ -n "$DEPLOY_USER" ] || missing="$missing FTP_USERNAME_PRODUCTION"
+          [ -n "$DEPLOY_PASS" ] || missing="$missing FTP_PASSWORD_PRODUCTION"
+          if [ -n "$missing" ]; then
+            echo "::error::Set repository secrets:$missing"
+            exit 1
+          fi
+
+      - name: Get latest code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Check the retire workers
+        run: |
+          for f in retire/sw.js retire/share-target-sw.js; do
+            node --check "$f"
+            grep -q 'registration.unregister()' "$f"
+            grep -q 'https://whiteboard.marcopontili.com' "$f"
+          done
+
+      # Same FTPS settings as deploy.yml. `put` replaces exactly these two
+      # files; no mirror, no delete.
+      - name: Upload over FTPS
+        env:
+          FTPS_HOST: ${{ secrets.FTPS_HOST }}
+          DEPLOY_USER: ${{ secrets.FTP_USERNAME_PRODUCTION }}
+          DEPLOY_PASS: ${{ secrets.FTP_PASSWORD_PRODUCTION }}
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          COMMON="set net:timeout 30; set net:max-retries 3; set net:reconnect-interval-base 10;"
+          FTPS="set ftp:ssl-force true; set ftp:ssl-protect-data true; set ssl:verify-certificate true; set ssl:check-hostname true;"
+          lftp -c "$FTPS $COMMON open -u \"$DEPLOY_USER\",\"$DEPLOY_PASS\" ftp://$FTPS_HOST:21; put retire/sw.js -o sw.js; put retire/share-target-sw.js -o share-target-sw.js; cls -l sw.js share-target-sw.js"
+
+      # Drop any edge copy of the two workers on the old host so browsers fetch
+      # the retiring versions on their next update check.
+      - name: Purge Cloudflare cache for the two files
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ZONE_ID" ]; then
+            echo "::warning::Cloudflare secrets missing; skipped the purge."
+            exit 0
+          fi
+          old_host="draw.marcopontili.com"
+          resp="$(curl -sS -X POST \
+            "https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache" \
+            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            -H "Content-Type: application/json" \
+            --data "{\"files\":[\"https://${old_host}/sw.js\",\"https://${old_host}/share-target-sw.js\"]}")"
+          echo "$resp" | jq .
+          echo "$resp" | jq -e '.success == true' >/dev/null

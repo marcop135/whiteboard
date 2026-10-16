@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="Sketch, write LaTeX math, and turn Mermaid code into editable shapes. Export PNG, SVG, PDF or .excalidraw. Works offline. No login, no tracking." />
+    <meta name="description" content="Sketch, write LaTeX math, and turn Mermaid code into editable shapes. Export PNG, SVG, PDF or .excalidraw. Works offline. No login, no cookies." />
     <!-- Browser chrome color (Chromium address bar, Safari tab and toolbar tint) matches the canvas. App.tsx rewrites both tags when the in-app theme toggle overrides the system scheme. -->
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121212" />
@@ -11,7 +11,7 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="draw" />
+    <meta name="apple-mobile-web-app-title" content="whiteboard" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
     <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
@@ -20,21 +20,48 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <!-- Social cards. No canonical: the page is noindex. og.png renders from .github/brand/og.svg (npm run brand:images). Keep in sync with src/siteMeta.ts. -->
+    <!-- Canonical host. The page stays noindex (meta above, X-Robots-Tag in public/.htaccess); canonical and og:url name the one host. og.png renders from .github/brand/og.svg (npm run brand:images). Keep in sync with src/siteMeta.ts. -->
+    <link rel="canonical" href="https://whiteboard.marcopontili.com/" />
+    <meta name="author" content="Marco Pontili" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://draw.marcopontili.com/" />
-    <meta property="og:site_name" content="draw" />
+    <meta property="og:url" content="https://whiteboard.marcopontili.com/" />
+    <meta property="og:site_name" content="whiteboard" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:title" content="draw · Whiteboard with LaTeX, Mermaid and Markdown" />
-    <meta property="og:description" content="Sketch, write LaTeX math, and turn Mermaid code into editable shapes. Export PNG, SVG, PDF or .excalidraw. Works offline. No login, no tracking." />
-    <meta property="og:image" content="https://draw.marcopontili.com/og.png?v=3" />
+    <meta property="og:title" content="whiteboard · Excalidraw with LaTeX, Mermaid and Markdown" />
+    <meta property="og:description" content="Sketch, write LaTeX math, and turn Mermaid code into editable shapes. Export PNG, SVG, PDF or .excalidraw. Works offline. No login, no cookies." />
+    <meta property="og:image" content="https://whiteboard.marcopontili.com/og.png?v=4" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:alt" content="draw: an Excalidraw whiteboard with LaTeX, Markdown and PDF export" />
+    <meta property="og:image:alt" content="whiteboard: an Excalidraw whiteboard with LaTeX, Markdown and PDF export" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="whiteboard · Excalidraw with LaTeX, Mermaid and Markdown" />
+    <meta name="twitter:description" content="Sketch, write LaTeX math, and turn Mermaid code into editable shapes. Export PNG, SVG, PDF or .excalidraw. Works offline." />
+    <meta name="twitter:image" content="https://whiteboard.marcopontili.com/og.png?v=4" />
+    <meta name="twitter:image:alt" content="whiteboard: an Excalidraw whiteboard with LaTeX, Markdown and PDF export" />
+    <link rel="help" href="/for-agents.html" />
+    <link rel="privacy-policy" href="/privacy" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "whiteboard",
+        "url": "https://whiteboard.marcopontili.com/",
+        "description": "Browser whiteboard built on Excalidraw, with LaTeX math, Mermaid-to-shapes and sanitized Markdown. Exports PNG, JPEG, SVG, PDF and .excalidraw. Works offline; boards stay in the browser.",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Any (web browser)",
+        "browserRequirements": "Requires JavaScript",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "license": "https://opensource.org/licenses/MIT",
+        "image": "https://whiteboard.marcopontili.com/og.png?v=4",
+        "author": { "@type": "Person", "name": "Marco Pontili", "url": "https://marcopontili.com/" },
+        "isBasedOn": "https://github.com/excalidraw/excalidraw",
+        "sameAs": ["https://github.com/marcop135/draw"]
+      }
+    </script>
     <!-- Keep in sync with src/siteMeta.ts (SITE_PAGE_TITLE) -->
-    <title>draw · Whiteboard with LaTeX, Mermaid and Markdown</title>
+    <title>whiteboard · Excalidraw with LaTeX, Mermaid and Markdown</title>
   </head>
   <body>
     <div id="root"></div>

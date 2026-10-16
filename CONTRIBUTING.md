@@ -1,6 +1,6 @@
 # Contributing
 
-**draw** is a personal whiteboard. External pull requests are not expected; open an issue first if you still want to propose a change.
+**whiteboard** is a personal whiteboard. External pull requests are not expected; open an issue first if you still want to propose a change.
 
 ## Setup
 

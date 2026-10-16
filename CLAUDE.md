@@ -4,11 +4,12 @@ Guidance for working in this repo.
 
 ## What this is
 
-`draw.marcopontili.com`: a personal, static, single-page whiteboard. The repo is
+`whiteboard.marcopontili.com`: a personal, static, single-page whiteboard. The repo is
 public (MIT); the hamburger credit links to it. Social cards (`og:*`,
 `public/og.png`) and the brand images in `.github/brand/` are in. Excalidraw plus LaTeX (KaTeX), Mermaid-to-shapes, sanitized Markdown, auto
 light/dark theme, and PNG/JPEG/SVG/PDF/`.excalidraw` export. React 19 + TypeScript +
-Vite, shipped as a PWA. No backend, no login, no tracking.
+Vite, shipped as a PWA. No backend, no login, no cookies; page views go to
+cookieless self-hosted Matomo (`public/matomo.js`, CSP in `public/.htaccess`).
 
 ## Commands
 
@@ -56,8 +57,15 @@ Vite, shipped as a PWA. No backend, no login, no tracking.
 
 - The site is intentionally NOT indexed: `index.html` sets `noindex, nofollow`
   (plus googlebot/bingbot variants). Do not remove or weaken these. `robots.txt`
-  allows only the agent discovery files and social unfurl bots; no canonical tag
-  (the page is `noindex`).
+  allows only the agent discovery files, `/privacy` and social unfurl bots. The
+  canonical tag names the one host (`whiteboard.marcopontili.com`).
+- Static pages in `public/` (`privacy.html`, `404.html`, `for-agents.html`) load
+  `/matomo.js` and are in the service worker's `navigateFallbackDenylist`.
+  Apache serves `/privacy` from `privacy.html`; `staticPagesPlugin` mirrors that in
+  dev and preview.
+- `retire/` holds the self-retiring service workers that
+  `.github/workflows/retire-draw.yml` uploads to the old draw docroot. They are
+  not part of the build.
 - Fonts are self-hosted: Roboto via `@fontsource/roboto/latin-*.css` (latin subset
   only; this is an English tool) and Excalidraw's fonts copied to `dist/fonts/` at
   build by `excalidrawAssetsPlugin`. Runtime never touches a CDN.

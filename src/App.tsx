@@ -42,6 +42,7 @@ import {
   Journals,
   QuestionCircle,
   Robot,
+  ShieldCheck,
 } from "./components/icons";
 import { SITE_SHORT_NAME } from "./siteMeta";
 import {
@@ -108,8 +109,9 @@ type SelectedInsert = { id: string; source: InsertSource };
 const AUTOSAVE_DEBOUNCE_MS = 800;
 
 const EXCALIDRAW_REPO_URL = "https://github.com/excalidraw/excalidraw";
-const DRAW_REPO_URL = "https://github.com/marcop135/draw";
+const WHITEBOARD_REPO_URL = "https://github.com/marcop135/whiteboard";
 const FOR_AGENTS_HREF = "/for-agents.html";
+const PRIVACY_HREF = "/privacy";
 
 
 /** Scene-level change detector: element versions, background and file set. */
@@ -543,6 +545,13 @@ export default function App() {
             >
               For agents
             </MainMenu.ItemLink>
+            <MainMenu.ItemLink
+              href={PRIVACY_HREF}
+              icon={<ShieldCheck />}
+              className="app-menu-small"
+            >
+              Privacy
+            </MainMenu.ItemLink>
             <MainMenu.ItemCustom className="app-menu-credit">
               <Diagram3 aria-hidden="true" />
               <span>
@@ -551,7 +560,7 @@ export default function App() {
                   Excalidraw
                 </a>{" "}
                 by{" "}
-                <a href={DRAW_REPO_URL} target="_blank" rel="noopener noreferrer">
+                <a href={WHITEBOARD_REPO_URL} target="_blank" rel="noopener noreferrer">
                   marcop135
                 </a>
               </span>
