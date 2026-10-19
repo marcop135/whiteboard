@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import katex from "katex";
 import "katex/dist/katex.min.css";
 import { Modal } from "./Modal";
-import { renderLatex } from "../lib/latex";
+import { katexStrict, renderLatex } from "../lib/latex";
 import { insertImageElement } from "../lib/insertImage";
 import type { ExcalidrawImperativeAPI } from "@excalidraw/excalidraw/types";
 
@@ -28,7 +28,7 @@ export function LatexModal({ api, onClose, edit }: Props) {
         throwOnError: true,
         output: "html",
         trust: false,
-        strict: "error",
+        strict: katexStrict,
       });
       return { html, error: null as string | null };
     } catch (e) {
