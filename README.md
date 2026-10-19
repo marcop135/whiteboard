@@ -1,7 +1,7 @@
 ![whiteboard: an Excalidraw whiteboard with LaTeX, Markdown and PDF export](.github/brand/readme-light.png#gh-light-mode-only)
 ![whiteboard: an Excalidraw whiteboard with LaTeX, Markdown and PDF export](.github/brand/readme-dark.png#gh-dark-mode-only)
 
-# whiteboard
+# Whiteboard
 
 Built on [Excalidraw](https://github.com/excalidraw/excalidraw). A whiteboard for sketches, formulas, notes, and quick flowcharts. Draw, drop in LaTeX or Markdown, export when done. No account, no upload, works offline.
 

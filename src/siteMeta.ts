@@ -14,4 +14,4 @@ export const SITE_SHORT_NAME = "whiteboard";
 export const SITE_PAGE_TITLE = "whiteboard · Excalidraw with LaTeX, Mermaid and Markdown";
 
 /** Absolute `og:image` URL; rendered from `.github/brand/og.svg`. Bump `?v=` when the image changes. */
-export const SITE_OG_IMAGE = `${SITE_ORIGIN}/og.png?v=4`;
+export const SITE_OG_IMAGE = `${SITE_ORIGIN}/og.png?v=5`;
