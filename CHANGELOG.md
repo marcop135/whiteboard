@@ -7,6 +7,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Raise contrast on the README banners, GitHub social preview and link preview image, matching md2pdf.
+
 ## [1.12.2] - 2026-10-19
 
 ### Changed
