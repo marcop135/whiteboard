@@ -7,6 +7,8 @@
 
 ## [Unreleased]
 
+## [1.12.4] - 2026-10-19
+
 ### Changed
 
 - Update the README.
