@@ -1,8 +1,17 @@
 import katex from "katex";
 
 /**
+ * `strict: "error"`, except glyphs KaTeX has no font metrics for (CJK inside
+ * `\text{}`, for example). KaTeX 0.19 routes those through `strict` too, and
+ * failing them would reject input that rendered fine before.
+ */
+export function katexStrict(errorCode: string): "error" | "warn" {
+  return errorCode === "symbolNotInFont" ? "warn" : "error";
+}
+
+/**
  * Render a LaTeX expression to an SVG data URL plus its measured size.
- * KaTeX is configured with `trust: false` and `strict: "error"` so untrusted
+ * KaTeX is configured with `trust: false` and `katexStrict` so untrusted
  * input cannot smuggle HTML or commands that escape the math sandbox.
  */
 export async function renderLatex(
@@ -20,7 +29,7 @@ export async function renderLatex(
     throwOnError: true,
     output: "mathml",
     trust: false,
-    strict: "error",
+    strict: katexStrict,
   });
   // Keep only the <math> element: the page's `.katex` rules would otherwise
   // size the probe differently from the stylesheet-less image.
