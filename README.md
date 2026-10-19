@@ -3,7 +3,7 @@
 
 # Whiteboard
 
-Built on [Excalidraw](https://github.com/excalidraw/excalidraw). A whiteboard for sketches, formulas, notes, and quick flowcharts. Draw, drop in LaTeX or Markdown, export when done. No account, no upload, works offline.
+A whiteboard for sketches, formulas, notes, and quick flowcharts. Draw, drop in LaTeX or Markdown, export when done. No account, no upload, works offline. Built on [Excalidraw](https://github.com/excalidraw/excalidraw).
 
 **Live app: [whiteboard.marcopontili.com](https://whiteboard.marcopontili.com/)**
 
@@ -22,7 +22,7 @@ Built on [Excalidraw](https://github.com/excalidraw/excalidraw). A whiteboard fo
 
 ## How it works
 
-1. Sketch on the Excalidraw canvas: shapes, arrows, freehand, text.
+1. Sketch on the [Excalidraw canvas](https://plus.excalidraw.com/how-to-start): shapes, arrows, freehand, text.
 2. Use **Insert** for LaTeX formulas, Markdown notes, or Mermaid diagrams when a sketch alone is not enough. Double-click an inserted image to edit its source.
 3. Export as PNG, JPEG, SVG, PDF, or `.excalidraw`, or copy the scene to the clipboard.
 
@@ -73,4 +73,4 @@ Read [CONTRIBUTING.md](./CONTRIBUTING.md), then [report a bug](https://github.co
 
 ## License
 
-[MIT](./LICENSE).
+[MIT](./LICENSE)
