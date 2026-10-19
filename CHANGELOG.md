@@ -7,6 +7,10 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- Keep rendering LaTeX with glyphs KaTeX lacks font metrics for, like CJK in `\text{}`, under KaTeX 0.19.
+
 ## [1.12.1] - 2026-10-16
 
 ### Fixed
