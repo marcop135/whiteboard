@@ -110,14 +110,6 @@ body,
   display: none !important;
 }
 
-/* Excalidraw docks the mobile lock/hand strip to the right edge but anchors it
-   near the top (top: ~4rem). Centre it vertically on the right edge so it sits
-   clear of the top toolbar and reads as a deliberate right-anchored control. */
-.excalidraw .mobile-misc-tools-container {
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 /* Help dialog header: Excalidraw ships four links (Documentation, blog, GitHub
    issues, YouTube), all pointing at upstream Excalidraw properties. Only the
    docs link is relevant here, so hide the other three and relabel the survivor
@@ -287,58 +279,129 @@ body,
     justify-content: center;
   }
 }
-/* When Excalidraw switches to its mobile layout the centered toolbar and side
-   panels collapse into a single full-width bottom Island (hamburger on the left,
-   undo/redo on the right, an empty centre). Drop the floating bar into that empty
-   centre and strip its own chrome so it reads as part of the bottom bar rather
-   than a second island stacked above it. z-index lifts above Excalidraw's UI
-   layer (4) so the icons paint on top of the bar's surface.
-
-   The condition mirrors Excalidraw's own breakpoint
-   (width < 730 || (height < 500 && width < 1000)) so this treatment kicks in for
-   landscape phones too. Keying on width alone left the bar in its <=1023 desktop
-   mode (z-index 3, opaque chrome) on landscape phones, where Excalidraw's mobile
-   Island (z-index 4) painted over it and the toolbar vanished. */
+/* Mobile controls share one horizontally scrollable bottom row. */
+.app-toolbar .app-tools-btn {
+  display: none;
+}
 @media (max-width: 729px), (max-height: 499px) and (max-width: 999px) {
+  .app-shell {
+    --mobile-row: 60px;
+    --mobile-safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .excalidraw.excalidraw--mobile .App-top-bar {
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .excalidraw.excalidraw--mobile .App-top-bar > section,
+  .excalidraw.excalidraw--mobile .App-top-bar > section > .Stack {
+    width: 100%;
+    min-width: 0;
+  }
+  .excalidraw.excalidraw--mobile .App-toolbar-container {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+  }
+  .excalidraw.excalidraw--mobile .App-toolbar--mobile {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: calc(8px + env(safe-area-inset-top, 0px)) 8px 8px;
+    border-radius: 0;
+    box-shadow: none;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+  }
+  .excalidraw.excalidraw--mobile .App-toolbar--mobile > .Stack {
+    width: max-content;
+  }
+  .excalidraw.excalidraw--mobile .App-toolbar--mobile .ToolIcon__icon,
+  .excalidraw.excalidraw--mobile .App-toolbar__extra-tools-trigger {
+    width: 44px;
+    height: 44px;
+  }
+  .excalidraw.excalidraw--mobile .App-toolbar__extra-tools-dropdown {
+    position: fixed;
+    top: calc(60px + env(safe-area-inset-top, 0px));
+    right: 8px;
+    left: 8px;
+    width: auto;
+    bottom: auto;
+    max-height: calc(100dvh - 136px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+    overflow-y: auto;
+  }
   .app-toolbar {
-    /* Centre the icons on the native bottom-bar row: its buttons sit at
-       14px (bar margin) + 8px (Island padding) + half of a 2rem button =
-       ~38px from the viewport bottom. With our 36px buttons that means a
-       20px offset; the <=640 rule re-tunes it for the 40px touch buttons. */
-    bottom: 20px;
-    z-index: 5;
-    background: transparent;
-    padding: 0;
-    /* Tighten the run of icons so they read as one compact group rather than
-       spaced out across the bar. */
+    position: static;
+    transform: none;
+    flex: none;
     gap: 0;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
     box-shadow: none;
   }
-  /* Excalidraw drops its footer Help (?) button in mobile layout, so surface
-     our own to keep shortcuts/help reachable. Matches the descendant-selector
-     specificity of the base hide rule above. */
-  .app-toolbar .app-help-btn {
+  .excalidraw.excalidraw--mobile .App-toolbar-content {
+    justify-content: flex-start;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    gap: 4px;
+  }
+  .excalidraw.excalidraw--mobile .App-toolbar-content > * {
+    flex: none;
+  }
+  .app-toolbar .menu-pop {
+    position: fixed;
+    bottom: calc(var(--mobile-row) + var(--mobile-safe-bottom) + 8px);
+    z-index: 6;
+  }
+  .excalidraw.excalidraw--mobile .App-toolbar-content .dropdown-menu--mobile {
+    position: fixed;
+    bottom: calc(var(--mobile-row) + var(--mobile-safe-bottom) + 8px);
+    left: 8px;
+    right: 8px;
+    width: auto;
+  }
+  .app-toolbar .app-btn {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    justify-content: center;
+  }
+  .app-toolbar .app-help-btn,
+  .app-toolbar .app-tools-btn {
     display: inline-flex;
   }
-  /* While a tool is active or something is selected, Excalidraw fills the bottom
-     bar with edit/duplicate/delete buttons. Rather than hide our overlay (which
-     made Export unreachable until the user re-picked the selection tool), lift it
-     to float as its own island just above the native bottom bar so Insert/Export
-     stay tappable in any tool state. Restore the island chrome the base mobile
-     rule stripped, since it now sits over the canvas instead of inside the bar.
-     The doubled class outranks the later `.app-toolbar { bottom }` overrides
-     (equal specificity, later source order) so the lift holds at every width. */
-  .app-toolbar.app-toolbar--editing {
-    bottom: 5rem;
-    background: var(--ui-bg-solid);
-    padding: 4px;
-    gap: 4px;
-    box-shadow:
-      0 0 0.93px 0 rgba(0, 0, 0, 0.17),
-      0 0 3.13px 0 rgba(0, 0, 0, 0.08),
-      0 7px 14px 0 rgba(0, 0, 0, 0.05);
+  .excalidraw.excalidraw--mobile .App-bottom-bar {
+    margin: 0 !important;
+    padding: 0;
   }
-  /* Orientation hint under the top toolbar, replacing the desktop-only arrows. */
+  .excalidraw.excalidraw--mobile .App-bottom-bar > .Island {
+    border-radius: 0;
+    box-shadow: none;
+    padding-bottom: var(--mobile-safe-bottom);
+  }
+  .excalidraw.excalidraw--mobile .App-toolbar-content {
+    min-height: var(--mobile-row);
+    box-sizing: border-box;
+  }
+  .excalidraw.excalidraw--mobile .mobile-misc-tools-container {
+    display: none;
+    position: fixed;
+    top: auto;
+    right: 8px;
+    bottom: calc(var(--mobile-row) + var(--mobile-safe-bottom) + 8px);
+    transform: none;
+    flex-direction: row;
+    border: 1px solid var(--ui-border);
+    border-radius: var(--ui-radius);
+    box-shadow: var(--ui-shadow-pop);
+  }
+  .app-shell--tools-open .excalidraw .mobile-misc-tools-container {
+    display: flex;
+  }
   .app-mobile-hint {
     display: block;
     position: absolute;
@@ -355,11 +418,15 @@ body,
     opacity: 0.9;
   }
 }
-/* Phone layout: Excalidraw ships 29-32px targets with 16px glyphs, below the
-   44px touch guideline. One target size (--m-btn) and one glyph size (--m-icon)
-   for the top tool strip, the right lock/hand strip, the bottom bar and this
-   app's buttons so the three bars read as one system. The top strip cannot
-   widen (11 tools across ~370px), so it grows in height and glyph only. */
+@media (min-width: 401px) {
+  .excalidraw.excalidraw--mobile .App-toolbar--mobile > .Stack {
+    margin-inline: auto;
+  }
+  .excalidraw.excalidraw--mobile .App-toolbar-content {
+    justify-content: safe center;
+  }
+}
+/* Use 44px touch targets and consistent glyphs for the mobile controls. */
 .excalidraw.excalidraw--mobile {
   --m-btn: 2.75rem;
   --m-icon: 1.375rem;
@@ -381,24 +448,9 @@ body,
   height: var(--m-btn);
 }
 @media (max-width: 640px) {
-  /* 44px tall like the native bar; 40px wide so four buttons fit between the
-     hamburger and undo/redo down to 360px viewports. */
-  .app-toolbar .app-btn {
-    width: 2.5rem;
-    height: 2.75rem;
-    padding: 0;
-  }
   .app-toolbar .app-btn svg {
     width: 1.375rem;
     height: 1.375rem;
-  }
-  /* Centre on the native bottom bar: 14px margin + 8px padding + half of a
-     44px button = 44px from the viewport bottom, minus half our 44px button. */
-  .app-toolbar {
-    bottom: 22px;
-  }
-  .app-toolbar.app-toolbar--editing {
-    bottom: 5.5rem;
   }
 }
 

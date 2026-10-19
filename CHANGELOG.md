@@ -7,6 +7,11 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Update the README.
+- Dock both mobile toolbars to the screen edges with horizontal scrolling and a Canvas tools menu.
+
 ## [1.12.3] - 2026-10-19
 
 ### Changed
