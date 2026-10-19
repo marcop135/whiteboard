@@ -8,6 +8,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { createPortal } from "react-dom";
 import {
   Excalidraw,
   MainMenu,
@@ -124,13 +125,29 @@ function sceneKey(input: SceneInput): string {
 }
 
 export default function App() {
+  const shellRef = useRef<HTMLDivElement>(null);
+  const [mobileToolbar, setMobileToolbar] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const shell = shellRef.current;
+    if (!shell) return;
+    const syncToolbar = () => {
+      setMobileToolbar(shell.querySelector<HTMLElement>(
+        ".excalidraw--mobile .App-toolbar-content",
+      ));
+    };
+    syncToolbar();
+    const observer = new MutationObserver(syncToolbar);
+    observer.observe(shell, { childList: true, subtree: true, attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+
   const apiRef = useRef<ExcalidrawImperativeAPI | null>(null);
   // Also kept in state so OS file imports can wait for the canvas.
   const [api, setApi] = useState<ExcalidrawImperativeAPI | null>(null);
   const [modal, setModal] = useState<ModalState>(null);
-  // On phones the custom bar overlays Excalidraw's bottom bar. That bar is only
-  // empty in selection mode with nothing selected; any other state fills it with
-  // edit/duplicate/delete buttons, so we hide our overlay then to avoid collisions.
+  const [mobileToolsOpen, setMobileToolsOpen] = useState(false);
+  const mobileToolsRef = useRef<HTMLButtonElement>(null);
   const [barEditing, setBarEditing] = useState(false);
   // Excalidraw renders its welcome hint arrows only in the desktop layout, so on
   // phones (where the scene is still empty) we surface our own orientation hint.
@@ -138,6 +155,30 @@ export default function App() {
   const [selectedInsert, setSelectedInsert] = useState<SelectedInsert | null>(null);
   const selectedInsertRef = useRef<SelectedInsert | null>(null);
   const [saveFailed, setSaveFailed] = useState(false);
+
+  useEffect(() => {
+    if (!mobileToolsOpen) return;
+    const onPointer = (event: PointerEvent) => {
+      if (!(event.target instanceof Element)) return;
+      if (
+        !event.target.closest(".mobile-misc-tools-container, .app-tools-btn")
+      ) {
+        setMobileToolsOpen(false);
+      }
+    };
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileToolsOpen(false);
+        mobileToolsRef.current?.focus();
+      }
+    };
+    window.addEventListener("pointerdown", onPointer);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("pointerdown", onPointer);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [mobileToolsOpen]);
 
   const openHelp = useCallback(() => {
     apiRef.current?.updateScene({ appState: { openDialog: { name: "help" } } });
@@ -500,9 +541,43 @@ export default function App() {
 
   const closeModal = useCallback(() => setModal(null), []);
 
+  const toolbar = (
+    <div className="app-toolbar">
+      <InsertMenu
+        dark={theme === "dark"}
+        onPick={(kind) => setModal({ kind })}
+        editKind={selectedInsert?.source.kind ?? null}
+        onEdit={editSelectedInsert}
+      />
+      <ExportMenu getScene={getScene} dark={theme === "dark"} />
+      <button
+        ref={mobileToolsRef}
+        type="button"
+        className="app-btn app-tools-btn"
+        aria-label="Canvas tools"
+        title="Canvas tools"
+        aria-expanded={mobileToolsOpen}
+        onClick={() => setMobileToolsOpen((open) => !open)}
+      >
+        <Diagram3 size={18} />
+      </button>
+      <ThemeToggle preference={preference} onCycle={onCycleTheme} />
+      <button
+        type="button"
+        className="app-btn app-help-btn"
+        aria-label="Help"
+        title="Help"
+        onClick={openHelp}
+      >
+        <QuestionCircle size={18} />
+      </button>
+    </div>
+  );
+
   return (
     <div
-      className={`app-shell${theme === "dark" ? " dark" : ""}`}
+      ref={shellRef}
+      className={`app-shell${theme === "dark" ? " dark" : ""}${mobileToolsOpen ? " app-shell--tools-open" : ""}`}
       onDoubleClickCapture={onDoubleClickCapture}
     >
       {board && initialData ? (
@@ -571,25 +646,7 @@ export default function App() {
           </MainMenu>
         </Excalidraw>
       ) : null}
-      <div className={`app-toolbar${barEditing ? " app-toolbar--editing" : ""}`}>
-        <InsertMenu
-          dark={theme === "dark"}
-          onPick={(kind) => setModal({ kind })}
-          editKind={selectedInsert?.source.kind ?? null}
-          onEdit={editSelectedInsert}
-        />
-        <ExportMenu getScene={getScene} dark={theme === "dark"} />
-        <ThemeToggle preference={preference} onCycle={onCycleTheme} />
-        <button
-          type="button"
-          className="app-btn app-help-btn"
-          aria-label="Help"
-          title="Help"
-          onClick={openHelp}
-        >
-          <QuestionCircle size={18} />
-        </button>
-      </div>
+      {mobileToolbar ? createPortal(toolbar, mobileToolbar) : toolbar}
 
       {sceneEmpty && !barEditing ? (
         <div className="app-mobile-hint" aria-hidden="true">
