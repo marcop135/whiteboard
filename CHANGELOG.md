@@ -7,6 +7,16 @@
 
 ## [Unreleased]
 
+## [1.12.5] - 2026-10-21
+
+### Changed
+
+- Clarify the README previews with labeled examples and separate desktop and mobile images.
+
+### Fixed
+
+- Distinguish mobile drawing toolbars from the canvas in light mode.
+
 ## [1.12.4] - 2026-10-19
 
 ### Changed
