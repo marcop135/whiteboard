@@ -61,7 +61,7 @@ const text = (id, x, y, value, fontSize, color = INK) =>
 
 // Hand-drawn part of the scene; the inserts are added through the UI.
 const SEED = [
-  text("title", 0, 0, "Right triangles", 40),
+  text("title", 0, 0, "1. Sketch", 32),
   base("triangle", {
     type: "line",
     x: 40,
@@ -203,17 +203,23 @@ async function buildScene(browser) {
       e.height *= 2;
     }
     if (vp === "desktop") {
+      els.push(text("latex-label", 500, 85, "2. LaTeX formula", 28));
       moveTo(latex, 500, 150);
-      moveTo(pick(mdIds), 800, 320);
-      moveTo(pick(mermaidIds), 40, 450);
+      els.push(text("markdown-label", 500, 290, "3. Markdown note", 28));
+      moveTo(pick(mdIds), 500, 345);
+      els.push(text("mermaid-label", 40, 440, "4. Mermaid flowchart", 28));
+      moveTo(pick(mermaidIds), 40, 500);
       return scene(els, data.files);
     }
-    moveTo(latex, 20, 400);
-    moveTo(pick(mdIds), 0, 500);
-    moveTo(pick(mermaidIds), 0, 700);
+    els.push(text("latex-label", 0, 380, "2. LaTeX formula", 26));
+    moveTo(latex, 20, 425);
+    els.push(text("markdown-label", 0, 520, "3. Markdown note", 26));
+    moveTo(pick(mdIds), 0, 565);
+    els.push(text("mermaid-label", 0, 750, "4. Mermaid flowchart", 26));
+    moveTo(pick(mermaidIds), 0, 800);
     // Fit-to-content runs edge to edge on phones; an invisible spacer adds a margin.
     const w = bbox(pick(mermaidIds)).w;
-    const spacer = base("spacer", { type: "rectangle", x: -24, y: 700, width: w + 48, height: 1, opacity: 0 });
+    const spacer = base("spacer", { type: "rectangle", x: -24, y: 800, width: w + 48, height: 1, opacity: 0 });
     return scene([...els.filter((e) => e.id !== "arrow"), spacer], data.files);
   };
   return { desktop: layout("desktop"), mobile: layout("mobile") };
@@ -231,6 +237,7 @@ async function shoot(browser, json, vp, scheme) {
   await settle(page);
   await page.evaluate((s) => window.draw.setScene(s), json);
   await page.keyboard.press("Escape");
+  await page.keyboard.press("v");
   await page.mouse.move(1, VIEWPORTS[vp].height / 2);
   await page.waitForTimeout(900);
   const png = await page.screenshot();

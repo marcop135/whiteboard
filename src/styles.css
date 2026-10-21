@@ -288,6 +288,16 @@ body,
     --mobile-row: 60px;
     --mobile-safe-bottom: env(safe-area-inset-bottom, 0px);
   }
+  .app-shell:not(.dark) .excalidraw.excalidraw--mobile .App-toolbar--mobile,
+  .app-shell:not(.dark) .excalidraw.excalidraw--mobile .App-bottom-bar > .Island {
+    background: var(--ui-bg-hover);
+  }
+  .app-shell:not(.dark) .excalidraw.excalidraw--mobile .App-toolbar--mobile {
+    box-shadow: inset 0 -1px var(--ui-border);
+  }
+  .app-shell:not(.dark) .excalidraw.excalidraw--mobile .App-bottom-bar > .Island {
+    box-shadow: inset 0 1px var(--ui-border);
+  }
   .excalidraw.excalidraw--mobile .App-top-bar {
     top: 0;
     left: 0;
