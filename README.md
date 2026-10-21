@@ -8,17 +8,18 @@ A whiteboard for sketches, formulas, notes, and quick flowcharts. Draw, drop in 
 **Live app: [whiteboard.marcopontili.com](https://whiteboard.marcopontili.com/)**
 
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/readme/desktop-dark.png">
-    <img alt="Desktop: a sketched right triangle, a typeset LaTeX formula, a Markdown note and a Mermaid flowchart" src="docs/readme/desktop-light.png" width="73%">
-  </picture>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/readme/mobile-dark.png">
-    <img alt="Mobile: the same board on a phone, with Insert, Export, theme and help in the bottom bar" src="docs/readme/mobile-light.png" width="21%">
-  </picture>
+  <img alt="Desktop: labeled examples of a hand-drawn triangle, LaTeX formula, Markdown note and Mermaid flowchart" src="docs/readme/desktop-light.png#gh-light-mode-only" width="100%">
+  <img alt="Desktop: labeled examples of a hand-drawn triangle, LaTeX formula, Markdown note and Mermaid flowchart" src="docs/readme/desktop-dark.png#gh-dark-mode-only" width="100%">
 </p>
 
-<p align="center"><strong>Desktop</strong> (left) · <strong>Mobile</strong> (right)</p>
+<p align="center">Desktop: sketch, LaTeX, Markdown and Mermaid on one board</p>
+
+<p align="center">
+  <img alt="Mobile: labeled sketch, LaTeX, Markdown and Mermaid examples between the drawing tools and bottom action bar" src="docs/readme/mobile-light.png#gh-light-mode-only" width="390">
+  <img alt="Mobile: labeled sketch, LaTeX, Markdown and Mermaid examples between the drawing tools and bottom action bar" src="docs/readme/mobile-dark.png#gh-dark-mode-only" width="390">
+</p>
+
+<p align="center">Mobile: drawing tools above, Insert and Export below</p>
 
 ## How it works
 
