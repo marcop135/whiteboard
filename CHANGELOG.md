@@ -7,6 +7,18 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Link the README banner to the live app.
+- Add an Author section to the README.
+
+### Security
+
+- Update DOMPurify to 3.4.17.
+- Update Mermaid's bundled KaTeX to 0.18.2 or later.
+- Update Vitest to 4.1.12.
+- Update dev-only brace-expansion to 1.1.21 and 2.1.7.
+
 ## [1.12.5] - 2026-10-21
 
 ### Changed
