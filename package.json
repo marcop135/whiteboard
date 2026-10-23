@@ -1,7 +1,7 @@
 {
   "name": "whiteboard-marcopontili-com",
   "private": true,
-  "version": "1.12.5",
+  "version": "1.12.6",
   "type": "module",
   "description": "whiteboard.marcopontili.com: Excalidraw with LaTeX (KaTeX), Mermaid-to-shapes, sanitized Markdown, automatic light/dark theme; PNG/JPEG/SVG/PDF export. React + TypeScript + Vite PWA; static, no backend or login.",
   "license": "MIT",
@@ -26,7 +26,7 @@
     "@excalidraw/excalidraw": "^0.18.1",
     "@fontsource/roboto": "^5.3.0",
     "bootstrap-icons": "^1.13.2",
-    "dompurify": "^3.4.16",
+    "dompurify": "^3.4.17",
     "jspdf": "^4.2.1",
     "katex": "^0.19.0",
     "marked": "^18.1.1",
@@ -53,16 +53,19 @@
     "typescript-eslint": "8.71.2",
     "vite": "^6.4.4",
     "vite-plugin-pwa": "^1.3.0",
-    "vitest": "^4.1.11"
+    "vitest": "^4.1.12"
   },
   "overrides": {
-    "dompurify": "^3.4.16",
+    "dompurify": "^3.4.17",
     "nanoid": "^5.1.16",
     "uuid": "^14.0.0",
     "esbuild": "^0.25.0",
     "lodash-es": "^4.18.1",
     "serialize-javascript": "^7.0.5",
-    "mermaid": "^11.16.1",
+    "mermaid": {
+      ".": "^11.16.1",
+      "katex": "^0.18.2"
+    },
     "browserslist": "^4.28.9",
     "baseline-browser-mapping": "^2.11.22",
     "fast-uri": "^3.1.8",
@@ -71,16 +74,16 @@
       "brace-expansion": "^5.0.9"
     },
     "@eslint/config-array": {
-      "brace-expansion": "1.1.18"
+      "brace-expansion": "1.1.21"
     },
     "@eslint/eslintrc": {
-      "brace-expansion": "1.1.18"
+      "brace-expansion": "1.1.21"
     },
     "eslint": {
-      "brace-expansion": "1.1.18"
+      "brace-expansion": "1.1.21"
     },
     "filelist": {
-      "brace-expansion": "2.1.4"
+      "brace-expansion": "2.1.7"
     },
     "ws": "^8.20.1",
     "sass": "^1.105.1"
