@@ -1,5 +1,5 @@
-![whiteboard: an Excalidraw whiteboard with LaTeX, Markdown and PDF export](.github/brand/readme-light.png#gh-light-mode-only)
-![whiteboard: an Excalidraw whiteboard with LaTeX, Markdown and PDF export](.github/brand/readme-dark.png#gh-dark-mode-only)
+[![whiteboard: an Excalidraw whiteboard with LaTeX, Markdown and PDF export](.github/brand/readme-light.png#gh-light-mode-only)](https://whiteboard.marcopontili.com/)
+[![whiteboard: an Excalidraw whiteboard with LaTeX, Markdown and PDF export](.github/brand/readme-dark.png#gh-dark-mode-only)](https://whiteboard.marcopontili.com/)
 
 # Whiteboard
 
@@ -71,6 +71,10 @@ More commands: [docs/commands.md](docs/commands.md).
 ## Contributing
 
 Read [CONTRIBUTING.md](./CONTRIBUTING.md), then [report a bug](https://github.com/marcop135/draw/issues/new?template=01-bug-report.yml) or [request a feature](https://github.com/marcop135/draw/issues/new?template=02-feature-request.yml).
+
+## Author
+
+[Marco Pontili](https://marcopontili.com)
 
 ## License
 
