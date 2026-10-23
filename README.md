@@ -1,5 +1,9 @@
-[![whiteboard: an Excalidraw whiteboard with LaTeX, Markdown and PDF export](.github/brand/readme-light.png#gh-light-mode-only)](https://whiteboard.marcopontili.com/)
-[![whiteboard: an Excalidraw whiteboard with LaTeX, Markdown and PDF export](.github/brand/readme-dark.png#gh-dark-mode-only)](https://whiteboard.marcopontili.com/)
+<a href="https://whiteboard.marcopontili.com/">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset=".github/brand/readme-dark.png">
+    <img alt="whiteboard: an Excalidraw whiteboard with LaTeX, Markdown and PDF export" src=".github/brand/readme-light.png">
+  </picture>
+</a>
 
 # Whiteboard
 
