@@ -7,6 +7,8 @@
 
 ## [Unreleased]
 
+## [1.12.6] - 2026-10-23
+
 ### Changed
 
 - Link the README banner to the live app.
