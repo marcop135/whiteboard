@@ -32,4 +32,5 @@ docs/audit/
 *.tsbuildinfo
 
 # Local Claude / editor scratch
-.claude/
+.claude/*
+!.claude/skills/

@@ -7,6 +7,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Load the `draw-scene` skill in Claude Code, Cursor, and Codex from its one published copy.
+
 ## [1.12.6] - 2026-10-23
 
 ### Changed
