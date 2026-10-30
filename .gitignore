@@ -33,3 +33,4 @@ docs/audit/
 
 # Local Claude / editor scratch
 .claude/
+blob-report/

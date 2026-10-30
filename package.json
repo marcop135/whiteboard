@@ -20,7 +20,10 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "verify:agent-readiness": "node scripts/verify-agent-readiness.mjs"
+    "verify:agent-readiness": "node scripts/verify-agent-readiness.mjs",
+    "test:e2e:install": "playwright install chromium",
+    "test:e2e:report": "playwright show-report",
+    "test:e2e:trace": "playwright show-trace"
   },
   "dependencies": {
     "@excalidraw/excalidraw": "^0.18.1",
@@ -34,6 +37,7 @@
     "react-dom": "^19.3.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
     "@playwright/test": "^1.64.0",
     "@types/katex": "^0.16.7",
     "@types/node": "^22.20.5",
