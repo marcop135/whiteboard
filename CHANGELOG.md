@@ -7,9 +7,11 @@
 
 ## [Unreleased]
 
+## [1.13.0] - 2026-10-30
+
 ### Added
 
-- Load the `draw-scene` skill in Claude Code, Cursor, and Codex from its one published copy.
+- Make `draw-scene` discoverable by supported coding tools.
 
 ## [1.12.6] - 2026-10-23
 
