@@ -7,6 +7,12 @@
 
 ## [Unreleased]
 
+## [1.13.0] - 2026-10-30
+
+### Added
+
+- Make `draw-scene` discoverable by supported coding tools.
+
 ## [1.12.6] - 2026-10-23
 
 ### Changed
