@@ -9,7 +9,7 @@
 
 ### Changed
 
-- Other copy: Lengthen the privacy, for-agents and 404 page titles to 30 characters or more ([#197](https://github.com/marcop135/whiteboard/issues/197)).
+- Other copy: Lengthen the privacy, for-agents and 404 page titles to 30 characters or more ([#200](https://github.com/marcop135/whiteboard/pull/200), [#197](https://github.com/marcop135/whiteboard/issues/197)).
 
 ## [1.14.0] - 2026-11-05
 
