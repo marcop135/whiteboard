@@ -12,6 +12,9 @@
 - Site copy: Add a noscript heading and summary to the app shell ([#201](https://github.com/marcop135/whiteboard/pull/201), [#198](https://github.com/marcop135/whiteboard/issues/198)).
 - Other copy: Add Open Graph and Twitter card tags to the for-agents page ([#201](https://github.com/marcop135/whiteboard/pull/201), [#198](https://github.com/marcop135/whiteboard/issues/198)).
 - Add a `Link` header for llms.txt and the API catalog ([#201](https://github.com/marcop135/whiteboard/pull/201), [#198](https://github.com/marcop135/whiteboard/issues/198)).
+- Add a CI check that flags titles and descriptions outside the length bounds ([#202](https://github.com/marcop135/whiteboard/pull/202), [#199](https://github.com/marcop135/whiteboard/issues/199)).
+- Add a CI check for broken internal links in the built pages ([#202](https://github.com/marcop135/whiteboard/pull/202), [#199](https://github.com/marcop135/whiteboard/issues/199)).
+- Run the agent-readiness check in CI ([#202](https://github.com/marcop135/whiteboard/pull/202), [#199](https://github.com/marcop135/whiteboard/issues/199)).
 
 ### Changed
 

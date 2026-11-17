@@ -31,6 +31,10 @@ jobs:
         run: npm audit --omit=dev --audit-level=high
       - run: npm run lint:ci
       - run: npm run build
+      - name: Check agent discovery files
+        run: npm run verify:agent-readiness
+      - name: Check titles, descriptions and internal links
+        run: npm run check:html
       - run: npm run test
       - name: Install Playwright browser
         run: npx playwright install chromium --with-deps

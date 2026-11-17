@@ -24,6 +24,8 @@ cookieless self-hosted Matomo (`public/matomo.js`, CSP in `public/.htaccess`).
   PNGs from `.github/brand/*.svg` (repo-brand kit; do not edit kit files)
 - `npm run readme:shots` - README screenshots to `docs/readme/` (needs `npm run preview`)
 - `npm run verify:agent-readiness` - agent discovery files in `dist/` + bridge
+- `npm run check:html` - title (30-65) and description (70-160) lengths plus internal
+  links in `dist/*.html`; CI runs both checks after the build
 
 ## Architecture
 
