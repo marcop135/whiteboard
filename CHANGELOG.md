@@ -7,6 +7,8 @@
 
 ## [Unreleased]
 
+## [1.15.0] - 2026-11-17
+
 ### Added
 
 - Site copy: Add a noscript heading and summary to the app shell ([#201](https://github.com/marcop135/whiteboard/pull/201), [#198](https://github.com/marcop135/whiteboard/issues/198)).
