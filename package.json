@@ -1,7 +1,7 @@
 {
   "name": "whiteboard-marcopontili-com",
   "private": true,
-  "version": "1.14.0",
+  "version": "1.15.0",
   "type": "module",
   "description": "whiteboard.marcopontili.com: Excalidraw with LaTeX (KaTeX), Mermaid-to-shapes, sanitized Markdown, automatic light/dark theme; PNG/JPEG/SVG/PDF export. React + TypeScript + Vite PWA; static, no backend or login.",
   "license": "MIT",
@@ -20,7 +20,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "verify:agent-readiness": "node scripts/verify-agent-readiness.mjs"
+    "verify:agent-readiness": "node scripts/verify-agent-readiness.mjs",
+    "check:html": "node scripts/check-site-html.mjs"
   },
   "dependencies": {
     "@excalidraw/excalidraw": "^0.18.1",

@@ -24,6 +24,8 @@ cookieless self-hosted Matomo (`public/matomo.js`, CSP in `public/.htaccess`).
   PNGs from `.github/brand/*.svg` (repo-brand kit; do not edit kit files)
 - `npm run readme:shots` - README screenshots to `docs/readme/` (needs `npm run preview`)
 - `npm run verify:agent-readiness` - agent discovery files in `dist/` + bridge
+- `npm run check:html` - title (30-65) and description (70-160) lengths plus internal
+  links in `dist/*.html`; CI runs both checks after the build
 
 ## Architecture
 
@@ -57,8 +59,8 @@ cookieless self-hosted Matomo (`public/matomo.js`, CSP in `public/.htaccess`).
 
 - The site is intentionally NOT indexed: `index.html` sets `noindex, nofollow`
   (plus googlebot/bingbot variants). Do not remove or weaken these. `robots.txt`
-  allows only the agent discovery files, `/privacy` and social unfurl bots. The
-  canonical tag names the one host (`whiteboard.marcopontili.com`).
+  allows only the agent discovery files, `/privacy` and social unfurl bots. Noindex
+  pages carry no canonical tag; `og:url` names the one host (`whiteboard.marcopontili.com`).
 - Static pages in `public/` (`privacy.html`, `404.html`, `for-agents.html`) load
   `/matomo.js` and are in the service worker's `navigateFallbackDenylist`.
   Apache serves `/privacy` from `privacy.html`; `staticPagesPlugin` mirrors that in

@@ -7,6 +7,27 @@
 
 ## [Unreleased]
 
+## [1.15.0] - 2026-11-17
+
+### Added
+
+- Site copy: Add a noscript heading and summary to the app shell ([#201](https://github.com/marcop135/whiteboard/pull/201), [#198](https://github.com/marcop135/whiteboard/issues/198)).
+- Other copy: Add Open Graph and Twitter card tags to the for-agents page ([#201](https://github.com/marcop135/whiteboard/pull/201), [#198](https://github.com/marcop135/whiteboard/issues/198)).
+- Add a `Link` header for llms.txt and the API catalog ([#201](https://github.com/marcop135/whiteboard/pull/201), [#198](https://github.com/marcop135/whiteboard/issues/198)).
+- Add a CI check that flags titles and descriptions outside the length bounds ([#202](https://github.com/marcop135/whiteboard/pull/202), [#199](https://github.com/marcop135/whiteboard/issues/199)).
+- Add a CI check for broken internal links in the built pages ([#202](https://github.com/marcop135/whiteboard/pull/202), [#199](https://github.com/marcop135/whiteboard/issues/199)).
+- Run the agent-readiness check in CI ([#202](https://github.com/marcop135/whiteboard/pull/202), [#199](https://github.com/marcop135/whiteboard/issues/199)).
+
+### Changed
+
+- Other copy: Use the current og.png version on the privacy page ([#201](https://github.com/marcop135/whiteboard/pull/201), [#198](https://github.com/marcop135/whiteboard/issues/198)).
+- Other copy: Replace the home page JSON-LD with a linked graph of site, person and app ([#201](https://github.com/marcop135/whiteboard/pull/201), [#198](https://github.com/marcop135/whiteboard/issues/198)).
+- Other copy: Drop duplicate Twitter title, description and image tags from the home page ([#201](https://github.com/marcop135/whiteboard/pull/201), [#198](https://github.com/marcop135/whiteboard/issues/198)).
+- Redirect /privacy.html to /privacy with a 301 ([#201](https://github.com/marcop135/whiteboard/pull/201), [#198](https://github.com/marcop135/whiteboard/issues/198)).
+- Remove the canonical link from noindex pages ([#201](https://github.com/marcop135/whiteboard/pull/201), [#198](https://github.com/marcop135/whiteboard/issues/198)).
+- Set `ai-input=no` in robots.txt to match the per-bot Disallow rules ([#201](https://github.com/marcop135/whiteboard/pull/201), [#198](https://github.com/marcop135/whiteboard/issues/198)).
+- Other copy: Lengthen the privacy, for-agents and 404 page titles to 30 characters or more ([#200](https://github.com/marcop135/whiteboard/pull/200), [#197](https://github.com/marcop135/whiteboard/issues/197)).
+
 ## [1.14.0] - 2026-11-05
 
 ### Changed
