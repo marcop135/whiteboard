@@ -21,8 +21,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <!-- Canonical host. The page stays noindex (meta above, X-Robots-Tag in public/.htaccess); canonical and og:url name the one host. og.png renders from .github/brand/og.svg (npm run brand:images). Keep in sync with src/siteMeta.ts. -->
-    <link rel="canonical" href="https://whiteboard.marcopontili.com/" />
+    <!-- The page stays noindex (meta above, X-Robots-Tag in public/.htaccess), so it carries no canonical; og:url names the one host. og.png renders from .github/brand/og.svg (npm run brand:images). Keep in sync with src/siteMeta.ts. -->
     <meta name="author" content="Marco Pontili" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://whiteboard.marcopontili.com/" />
@@ -36,35 +35,55 @@
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:alt" content="whiteboard: an Excalidraw whiteboard with LaTeX, Markdown and PDF export" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="whiteboard · Excalidraw with LaTeX, Mermaid and Markdown" />
-    <meta name="twitter:description" content="Sketch, write LaTeX math, and turn Mermaid code into editable shapes. Export PNG, SVG, PDF or .excalidraw. Works offline." />
-    <meta name="twitter:image" content="https://whiteboard.marcopontili.com/og.png?v=5" />
-    <meta name="twitter:image:alt" content="whiteboard: an Excalidraw whiteboard with LaTeX, Markdown and PDF export" />
     <link rel="help" href="/for-agents.html" />
     <link rel="privacy-policy" href="/privacy" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "whiteboard",
-        "url": "https://whiteboard.marcopontili.com/",
-        "description": "Browser whiteboard built on Excalidraw, with LaTeX math, Mermaid-to-shapes and sanitized Markdown. Exports PNG, JPEG, SVG, PDF and .excalidraw. Works offline; boards stay in the browser.",
-        "applicationCategory": "DesignApplication",
-        "operatingSystem": "Any (web browser)",
-        "browserRequirements": "Requires JavaScript",
-        "isAccessibleForFree": true,
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
-        "license": "https://opensource.org/licenses/MIT",
-        "image": "https://whiteboard.marcopontili.com/og.png?v=5",
-        "author": { "@type": "Person", "name": "Marco Pontili", "url": "https://marcopontili.com/" },
-        "isBasedOn": "https://github.com/excalidraw/excalidraw",
-        "sameAs": ["https://github.com/marcop135/draw"]
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://whiteboard.marcopontili.com/#website",
+            "url": "https://whiteboard.marcopontili.com/",
+            "name": "whiteboard",
+            "inLanguage": "en",
+            "publisher": { "@id": "https://marcopontili.com/#person" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://marcopontili.com/#person",
+            "name": "Marco Pontili",
+            "url": "https://marcopontili.com/"
+          },
+          {
+            "@type": "WebApplication",
+            "@id": "https://whiteboard.marcopontili.com/#app",
+            "name": "whiteboard",
+            "url": "https://whiteboard.marcopontili.com/",
+            "isPartOf": { "@id": "https://whiteboard.marcopontili.com/#website" },
+            "description": "Browser whiteboard built on Excalidraw, with LaTeX math, Mermaid-to-shapes and sanitized Markdown. Exports PNG, JPEG, SVG, PDF and .excalidraw. Works offline; boards stay in the browser.",
+            "applicationCategory": "DesignApplication",
+            "operatingSystem": "Any (web browser)",
+            "browserRequirements": "Requires JavaScript",
+            "isAccessibleForFree": true,
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+            "license": "https://opensource.org/licenses/MIT",
+            "image": "https://whiteboard.marcopontili.com/og.png?v=5",
+            "author": { "@id": "https://marcopontili.com/#person" },
+            "isBasedOn": "https://github.com/excalidraw/excalidraw",
+            "sameAs": ["https://github.com/marcop135/draw"]
+          }
+        ]
       }
     </script>
     <!-- Keep in sync with src/siteMeta.ts (SITE_PAGE_TITLE) -->
     <title>whiteboard · Excalidraw with LaTeX, Mermaid and Markdown</title>
   </head>
   <body>
+    <noscript>
+      <h1>whiteboard</h1>
+      <p>Browser whiteboard built on Excalidraw with LaTeX, Mermaid and Markdown. Requires JavaScript.</p>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

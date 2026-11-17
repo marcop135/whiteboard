@@ -4,7 +4,7 @@ export const SITE_DOCUMENT_TITLE = "whiteboard.marcopontili.com";
 /** HTTPS origin derived from the document title hostname (no trailing slash). */
 export const SITE_ORIGIN = `https://${SITE_DOCUMENT_TITLE}`;
 
-/** Origin with trailing slash, used for `og:url` and `<link rel="canonical">`. */
+/** Origin with trailing slash, used for `og:url`. */
 export const SITE_CANONICAL_URL = `${SITE_ORIGIN}/`;
 
 /** Product name and PWA `short_name` (launcher / installs). */
