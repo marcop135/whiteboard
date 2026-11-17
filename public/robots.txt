@@ -19,7 +19,7 @@ Allow: /.well-known/ai-catalog.json
 Allow: /.well-known/agent-skills/
 Allow: /.well-known/security.txt
 Allow: /privacy
-Content-Signal: ai-train=no, search=no, ai-input=no
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 
 # Social link-preview / unfurl bots
 User-agent: WhatsApp
