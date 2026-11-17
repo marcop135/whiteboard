@@ -29,7 +29,7 @@ Implementation: [`src/lib/agentBridge.ts`](../src/lib/agentBridge.ts), registere
 
 ## Constraints
 
-- `robots.txt` keeps `Disallow: /` and every AI-crawler block; only the files above are `Allow`-listed, with `Content-Signal: ai-train=no, search=no, ai-input=no`, matching the per-bot blocks. Every response carries a `Link` header to `/llms.txt` and `/.well-known/api-catalog`.
+- `robots.txt` keeps `Disallow: /` and every AI-crawler block; only the files above are `Allow`-listed, with `Content-Signal: ai-train=yes, search=yes, ai-input=yes` for those Allow-listed files. Every response carries a `Link` header to `/llms.txt` and `/.well-known/api-catalog`.
 - The service worker's `navigateFallbackDenylist` keeps these paths from being answered with the app shell.
 
 `npm run verify:agent-readiness` checks `dist/` and the bridge source; pass a base URL to check a running server.

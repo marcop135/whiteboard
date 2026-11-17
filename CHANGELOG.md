@@ -7,6 +7,12 @@
 
 ## [Unreleased]
 
+## [1.15.1] - 2026-11-17
+
+### Changed
+
+- Set `Content-Signal` in `robots.txt` to `ai-train=yes, search=yes, ai-input=yes` ([#208](https://github.com/marcop135/whiteboard/pull/208), [#207](https://github.com/marcop135/whiteboard/issues/207)).
+
 ## [1.15.0] - 2026-11-17
 
 ### Added
