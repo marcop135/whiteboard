@@ -16,6 +16,8 @@
   # Belt-and-braces with the <meta name="robots"> tags + robots.txt: this
   # header reaches crawlers that ignore HTML and fetch raw assets too.
   Header always set X-Robots-Tag "noindex, nofollow, noarchive, nosnippet, noimageindex"
+  # Agent discovery: point header-reading agents at llms.txt and the RFC 9727 API catalog.
+  Header always set Link "</llms.txt>; rel=\"describedby\", </.well-known/api-catalog>; rel=\"api-catalog\""
 </IfModule>
 
 # Long-cache only content-hashed files: Vite output in /assets/ and the
@@ -43,8 +45,12 @@
 </FilesMatch>
 
 # Extensionless privacy page, and a real 404 page with a 404 status.
+# A direct request for /privacy.html 301s to /privacy; the THE_REQUEST guard
+# keeps the internal rewrite below from looping back into the redirect.
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  RewriteCond %{THE_REQUEST} \s/privacy\.html[\s?]
+  RewriteRule ^privacy\.html$ https://whiteboard.marcopontili.com/privacy [R=301,L]
   RewriteRule ^privacy/?$ privacy.html [L]
 </IfModule>
 ErrorDocument 404 /404.html
