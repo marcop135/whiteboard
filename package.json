@@ -20,7 +20,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "verify:agent-readiness": "node scripts/verify-agent-readiness.mjs"
+    "verify:agent-readiness": "node scripts/verify-agent-readiness.mjs",
+    "check:html": "node scripts/check-site-html.mjs"
   },
   "dependencies": {
     "@excalidraw/excalidraw": "^0.18.1",
