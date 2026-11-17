@@ -25,13 +25,11 @@ if (!existsSync(dist)) {
   process.exit(1);
 }
 
+// One pass, so a decoded "&" is never decoded again ("&amp;lt;" stays "&lt;").
+const ENTITIES = { "&amp;": "&", "&lt;": "<", "&gt;": ">", "&quot;": '"', "&#39;": "'" };
 const decode = (s) =>
   s
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
+    .replace(/&(?:amp|lt|gt|quot|#39);/g, (m) => ENTITIES[m])
     .replace(/\s+/g, " ")
     .trim();
 
